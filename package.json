@@ -74,8 +74,8 @@
     "url": "https://github.com/JasperPengC/agent-blackbox/issues"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "typescript": "^5.9.0"
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
   },
   "main": "dist/cli.js"
 }
