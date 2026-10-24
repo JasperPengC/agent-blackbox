@@ -9,32 +9,27 @@
  *     和 DSH 同源，iframe 直接可用，也没有跨域问题；
  *   · **复用核心路由**（`createRouter`）—— 插件不是第二套实现，就是同一份代码
  *     换了个挂载点；独立运行的 `blackbox ui` 与插件面板行为完全一致；
- *   · 会话来源自动发现：默认打开最近活动的那一个，也可以用 `?file=` 指定。
+ *   · **发布包自包含** —— `core/`（编译后的核心）与 `web/`（渲染器）随 npm 包
+ *     一起发布，安装后不再依赖本仓库；仓库里 link 安装时则回退到 `dist/` 或 `src/`。
  *
- * 注意：本文件用 TypeScript 引用核心（`../../../src/*.ts`）。
- * Node ≥22.19 的类型擦除**不作用于 node_modules**，所以本插件必须用
- * `dsh plugin add link:<路径>` 安装（符号链接会被解析成真实路径，落在 node_modules
- * 之外）。发布到 npm 前需要先把核心打成 JS —— 见 README 的「已知限制」。
+ * 会话来源自动发现：默认打开最近活动的那一个，也可以用 `?file=` 指定。
  */
 
-import { existsSync, readdirSync, statSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-/**
- * 优先加载**构建产物** `dist/`，没有再退回 `src/` 的 TS。
- *
- * 这样插件在两种形态下都能用：
- *   · 仓库里 link 安装（开发）：没有 dist 时直接跑 TS
- *   · 发布包：跑编译后的 JS（npm 安装不会对 node_modules 里的 .ts 做类型擦除）
- */
-const ROOT = new URL('../../../', import.meta.url)
+/** 插件包根目录（发布包 / 仓库里的 integrations/dsh-plugin） */
+const PACKAGE_ROOT = new URL('../', import.meta.url)
+/** 仓库根目录（仅 link 开发时存在） */
+const REPO_ROOT = new URL('../../../', import.meta.url)
 
-/**
- * 选择加载 dist 还是 src：
- *   · 发布包：只有 dist 能跑（Node 不对 node_modules 里的 .ts 做类型擦除）；
- *   · 仓库 link 安装：改了 src 却没 build 时，**dist 是旧的** ——
- *     静默用旧代码是最难查的坑，所以按"哪边更新"决定。
- */
+/** 仓库 checkout 时才做"dist/src 二选一"的开发逻辑；发布包里没有 src/ */
+const devCheckout = existsSync(fileURLToPath(new URL('src/server.ts', REPO_ROOT)))
+/** 发布包里预编译的核心：core/server.js */
+const bundledCore = !devCheckout && existsSync(fileURLToPath(new URL('core/server.js', PACKAGE_ROOT)))
+
 function latestMtime(url) {
   let max = 0
   const walk = (u) => {
@@ -60,14 +55,19 @@ function latestMtime(url) {
   return max
 }
 
+/**
+ * 发布包：直接加载 core/ 里编译好的 JS。
+ * 仓库 link：优先 dist/，没有 dist 或 src 更新时用 src 的 TS（Node 类型擦除）。
+ */
 async function loadCore(name) {
-  const dist = new URL(`dist/${name}.js`, ROOT)
-  const src = new URL(`src/${name}.ts`, ROOT)
+  if (bundledCore) return import(new URL(`core/${name}.js`, PACKAGE_ROOT).href)
+  const dist = new URL(`dist/${name}.js`, REPO_ROOT)
+  const src = new URL(`src/${name}.ts`, REPO_ROOT)
   const distFile = fileURLToPath(dist)
   let target = src
   if (existsSync(distFile)) {
     const distMtime = statSync(distFile).mtimeMs
-    const srcMtime = existsSync(fileURLToPath(src)) ? latestMtime(new URL('src/', ROOT)) : 0
+    const srcMtime = existsSync(fileURLToPath(src)) ? latestMtime(new URL('src/', REPO_ROOT)) : 0
     target = distMtime >= srcMtime ? dist : src
   }
   return import(target.href)
@@ -80,7 +80,23 @@ const { discoverAll } = await loadCore('sources')
 export const name = 'agent-blackbox'
 
 const PREFIX = '/blackbox'
-const FALLBACK_FIXTURE = fileURLToPath(new URL('../../../fixtures/mission-demo.ndjson', import.meta.url))
+
+/** 发布包内置的示例会话；开发仓库里也有同一份 */
+function bundledFixture() {
+  for (const root of [PACKAGE_ROOT, REPO_ROOT]) {
+    const file = fileURLToPath(new URL('fixtures/mission-demo.ndjson', root))
+    if (existsSync(file)) return file
+  }
+  return null
+}
+
+/** 一个会话都没有时的兜底：空 NDJSON，面板显示空状态而不是报错 */
+function placeholderSession() {
+  const dir = mkdtempSync(join(tmpdir(), 'dsh-agent-blackbox-'))
+  const file = join(dir, 'empty.ndjson')
+  writeFileSync(file, '')
+  return file
+}
 
 /** 默认打开哪个会话：最近活动的那个；一个都没有就用内置示例 */
 function pickDefaultSession(configured) {
@@ -91,13 +107,13 @@ function pickDefaultSession(configured) {
   } catch {
     /* 没有安装任何 agent 也能用内置示例 */
   }
-  return FALLBACK_FIXTURE
+  return bundledFixture() ?? placeholderSession()
 }
 
 export function apply(ctx, config = {}) {
   const file = pickDefaultSession(config.file)
   // follow: true —— 实时会话文件在增长时增量扩展索引；静止会话没有额外开销
-const router = createRouter({ file, basePath: PREFIX, follow: true })
+  const router = createRouter({ file, basePath: PREFIX, follow: true })
 
   ctx.inject(['webServer'], (webCtx) => {
     webCtx.effect(

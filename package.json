@@ -43,7 +43,8 @@
     "plugin:install": "bash scripts/install-plugin.sh",
     "plugin:uninstall": "bash scripts/uninstall-plugin.sh",
     "perf": "node scripts/perf.mjs",
-    "audit:contrast": "node scripts/audit-contrast.mjs"
+    "audit:contrast": "node scripts/audit-contrast.mjs",
+    "plugin:pack": "node scripts/build-plugin-package.mjs"
   },
   "keywords": [
     "ai-agents",
