@@ -158,6 +158,11 @@ Chrome 155；数据来自合成 fixture 与一个 47 MB 的真实会话。Apple 
 - 成本依赖本地价格表，未知模型不显示成本
 - 插件目前针对 DSH 验证；其他编辑器可使用独立服务模式
 
+## 相关仓库
+
+- [dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox) — DSH 插件：
+  在 DeepSeek Harness 侧栏打开本项目的仪表盘（npm 包 `dsh-agent-blackbox`）
+
 ## 参与贡献
 
 变更记录见 [CHANGELOG.md](CHANGELOG.md)（[English](CHANGELOG.en.md)）。

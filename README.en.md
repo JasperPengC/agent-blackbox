@@ -175,6 +175,12 @@ paint against a running server.
 - Cost estimates depend on the local pricing file; unknown models show no cost
 - The plugin is tested with DSH; other editors can use the standalone server
 
+## Related repositories
+
+- [dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox) — DSH plugin
+  that opens this dashboard in the DeepSeek Harness sidebar (npm package
+  `dsh-agent-blackbox`)
+
 ## Contributing
 
 Release history: [CHANGELOG.en.md](CHANGELOG.en.md) ([中文](CHANGELOG.md)).
