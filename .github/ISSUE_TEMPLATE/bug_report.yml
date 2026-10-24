@@ -37,7 +37,7 @@ body:
       label: Steps to reproduce
       description: Commands, URL including `?t=` or `?file=`, and session type
       placeholder: |
-        1. `blackbox live 0489561a`
+        1. `blackbox live <session-id>`
         2. Drag the timeline to ...
         3. Observe ...
     validations:

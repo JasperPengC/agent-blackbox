@@ -60,8 +60,8 @@ test('displayTitle 截断过长标题', () => {
 
 test('sessionIdFromFile 从路径解析', () => {
   assert.equal(
-    sessionIdFromFile('/x/sessions/p/session-0489561a-726d-4829-9abd-d630a6aecfd7/session.v4.jsonl.zstd'),
-    'session-0489561a-726d-4829-9abd-d630a6aecfd7',
+    sessionIdFromFile('/x/sessions/p/session-12345678-1234-1234-1234-123456789abc/session.v4.jsonl.zstd'),
+    'session-12345678-1234-1234-1234-123456789abc',
   )
   assert.equal(sessionIdFromFile('/x/fixtures/mission-demo.ndjson'), undefined)
 })
