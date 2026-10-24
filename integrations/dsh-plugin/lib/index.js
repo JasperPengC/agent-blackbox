@@ -25,8 +25,9 @@ const PACKAGE_ROOT = new URL('../', import.meta.url)
 /** 仓库根目录（仅 link 开发时存在） */
 const REPO_ROOT = new URL('../../../', import.meta.url)
 
-/** 仓库 checkout 时才做"dist/src 二选一"的开发逻辑；发布包里没有 src/ */
-const devCheckout = existsSync(fileURLToPath(new URL('src/server.ts', REPO_ROOT)))
+/** agent-blackbox monorepo 里的 integrations/dsh-plugin 才是"开发源码"形态 */
+const monorepoLayout = /[\\/]integrations[\\/]dsh-plugin[\\/]?$/.test(fileURLToPath(PACKAGE_ROOT))
+const devCheckout = monorepoLayout && existsSync(fileURLToPath(new URL('src/server.ts', REPO_ROOT)))
 /** 发布包里预编译的核心：core/server.js */
 const bundledCore = !devCheckout && existsSync(fileURLToPath(new URL('core/server.js', PACKAGE_ROOT)))
 
