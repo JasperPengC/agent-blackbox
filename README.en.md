@@ -9,7 +9,7 @@ inspect, and compare across sessions.
 Everything stays on your machine: the tool only reads local session files and has
 no telemetry.
 
-[![CI](https://github.com/Storm-Starlight/agent-blackbox/actions/workflows/ci.yml/badge.svg)](https://github.com/Storm-Starlight/agent-blackbox/actions/workflows/ci.yml)
+[![CI](https://github.com/JasperPengC/agent-blackbox/actions/workflows/ci.yml/badge.svg)](https://github.com/JasperPengC/agent-blackbox/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![node](https://img.shields.io/badge/node-%E2%89%A522.19-339933)
 ![runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-blue)
@@ -73,7 +73,7 @@ Requires Node.js ≥ 22.19 (the sources are TypeScript, executed via Node's type
 stripping). No build step is needed for local use.
 
 ```bash
-git clone https://github.com/Storm-Starlight/agent-blackbox.git
+git clone https://github.com/JasperPengC/agent-blackbox.git
 cd agent-blackbox
 npm install
 

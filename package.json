@@ -67,11 +67,11 @@
   "author": "GlowStorm",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Storm-Starlight/agent-blackbox.git"
+    "url": "git+https://github.com/JasperPengC/agent-blackbox.git"
   },
-  "homepage": "https://github.com/Storm-Starlight/agent-blackbox#readme",
+  "homepage": "https://github.com/JasperPengC/agent-blackbox#readme",
   "bugs": {
-    "url": "https://github.com/Storm-Starlight/agent-blackbox/issues"
+    "url": "https://github.com/JasperPengC/agent-blackbox/issues"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

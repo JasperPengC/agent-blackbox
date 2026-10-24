@@ -7,7 +7,7 @@ AI 编程 agent 的飞行记录仪。把各 runtime 已经写在本地的会话�
 
 所有处理都在本机完成：只读取本地会话文件，不上传、无遥测。
 
-[![CI](https://github.com/Storm-Starlight/agent-blackbox/actions/workflows/ci.yml/badge.svg)](https://github.com/Storm-Starlight/agent-blackbox/actions/workflows/ci.yml)
+[![CI](https://github.com/JasperPengC/agent-blackbox/actions/workflows/ci.yml/badge.svg)](https://github.com/JasperPengC/agent-blackbox/actions/workflows/ci.yml)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![node](https://img.shields.io/badge/node-%E2%89%A522.19-339933)
 
@@ -68,7 +68,7 @@ agent-blackbox 从事件日志重建这些信息：
 本地运行不需要构建。
 
 ```bash
-git clone https://github.com/Storm-Starlight/agent-blackbox.git
+git clone https://github.com/JasperPengC/agent-blackbox.git
 cd agent-blackbox
 npm install
 

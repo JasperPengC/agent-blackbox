@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Usage questions and discussion
-    url: https://github.com/Storm-Starlight/agent-blackbox/discussions
+    url: https://github.com/JasperPengC/agent-blackbox/discussions
     about: How to use it, why it is designed this way, feature ideas
   - name: Security reports (private)
-    url: https://github.com/Storm-Starlight/agent-blackbox/security/advisories/new
+    url: https://github.com/JasperPengC/agent-blackbox/security/advisories/new
     about: Please do not disclose security details in a public issue
