@@ -33,8 +33,9 @@ function ensureWorker(): Worker {
     else job.reject(new Error(msg.error ?? '解码失败'))
     scheduleIdle()
   })
-  w.on('error', (err) => {
-    for (const job of pending.values()) job.reject(err)
+  w.on('error', (err: unknown) => {
+    const error = err instanceof Error ? err : new Error(String(err))
+    for (const job of pending.values()) job.reject(error)
     pending.clear()
     w.terminate()
     worker = null
