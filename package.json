@@ -1,0 +1,81 @@
+{
+  "name": "agent-blackbox",
+  "version": "0.1.0",
+  "description": "Local-first flight recorder for AI coding agents: replay, inspect and compare sessions from DSH, Claude Code, Codex and ACP.",
+  "type": "module",
+  "bin": {
+    "blackbox": "./bin/blackbox.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src",
+    "web",
+    "fixtures",
+    "docs",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "CHANGELOG.en.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22.19"
+  },
+  "scripts": {
+    "demo": "node src/cli.ts demo",
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run typecheck && npm run build",
+    "verify:pack": "bash scripts/verify-pack.sh",
+    "live": "node src/cli.ts live",
+    "sessions": "node src/cli.ts sessions",
+    "overview": "node src/cli.ts overview",
+    "demo:ui": "node src/cli.ts demo --ui",
+    "ui": "node src/cli.ts ui fixtures/mission-demo.ndjson",
+    "stats": "node src/cli.ts stats fixtures/mission-demo.ndjson",
+    "test": "node --test test/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "bench": "node scripts/bench.ts 100000",
+    "fixture": "node scripts/make-fixture.ts",
+    "fixtures:multi": "node scripts/make-overview-fixtures.ts",
+    "shot": "node scripts/shot.mjs",
+    "plugin:install": "bash scripts/install-plugin.sh",
+    "plugin:uninstall": "bash scripts/uninstall-plugin.sh",
+    "perf": "node scripts/perf.mjs",
+    "audit:contrast": "node scripts/audit-contrast.mjs"
+  },
+  "keywords": [
+    "ai-agents",
+    "agent-observability",
+    "flight-recorder",
+    "live-monitoring",
+    "multi-agent",
+    "session-overview",
+    "cost-tracking",
+    "event-sourcing",
+    "time-travel-debugging",
+    "replay",
+    "agent-blackbox",
+    "claude-code",
+    "codex",
+    "acp",
+    "deepseek-harness",
+    "dsh"
+  ],
+  "license": "MIT",
+  "author": "GlowStorm",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Storm-Starlight/agent-blackbox.git"
+  },
+  "homepage": "https://github.com/Storm-Starlight/agent-blackbox#readme",
+  "bugs": {
+    "url": "https://github.com/Storm-Starlight/agent-blackbox/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  },
+  "main": "dist/cli.js"
+}
