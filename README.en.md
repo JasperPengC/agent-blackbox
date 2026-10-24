@@ -107,7 +107,8 @@ dsh plugin --profile desktop add dsh-agent-blackbox
 After restarting DSH, the plugin appears as *Blackbox* in the sidebar and as a
 full panel in the main area. It reuses the same HTTP API and renderers as the
 standalone UI, and the published package bundles the compiled core, so a separate
-agent-blackbox install is not required.
+agent-blackbox install is not required. The plugin is developed and released from
+[dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox).
 
 For development from a checkout:
 

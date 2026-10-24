@@ -97,7 +97,8 @@ dsh plugin --profile desktop add dsh-agent-blackbox
 
 重启 DSH 后，侧栏会出现 *Blackbox* 条目，主区可打开整屏面板。
 插件复用与独立 UI 完全相同的 HTTP API 与渲染器；发布包里已内置编译后的核心，
-不需要另外安装 agent-blackbox。
+不需要另外安装 agent-blackbox。插件源码与发版在独立仓库
+[dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox)。
 
 仓库内开发时用 link 安装：
 
