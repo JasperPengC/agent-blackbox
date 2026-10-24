@@ -34,9 +34,18 @@ jobs:
         run: |
           node src/cli.ts ui fixtures/mission-demo.ndjson --port 7911 &
           sleep 2
-          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/?t=22000" --strict
-          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/overview" --page=overview --strict
-          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/compare" --page=compare --strict
+          # Chrome 在 CI runner 上偶发启动失败：每个页面重试 3 次
+          retry() {
+            for i in 1 2 3; do
+              if "$@"; then return 0; fi
+              echo "retry $i failed: $*" >&2
+              sleep 3
+            done
+            return 1
+          }
+          retry node scripts/audit-contrast.mjs "http://127.0.0.1:7911/?t=22000" --strict
+          retry node scripts/audit-contrast.mjs "http://127.0.0.1:7911/overview" --page=overview --strict
+          retry node scripts/audit-contrast.mjs "http://127.0.0.1:7911/compare" --page=compare --strict
 
       - name: smoke (CLI, local server, static assets)
         run: |
