@@ -1,0 +1,34 @@
+name: Feature request
+description: A runtime, operation or view you would like to have
+labels: ['enhancement']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem you want to solve
+      description: Describe the scenario rather than a solution. "I cannot find those two minutes in 30k events" is more useful than "add a search box".
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Suggested approach (optional)
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Category
+      options:
+        - New runtime adapter
+        - New data source (not file tailing)
+        - UI / interaction
+        - Performance
+        - Documentation
+        - Not sure
+  - type: checkboxes
+    id: nongoals
+    attributes:
+      label: Scope confirmation
+      description: The following are deliberate non-goals (see README)
+      options:
+        - label: I understand this project does not run agents or provide orchestration or cloud collaboration
+          required: true

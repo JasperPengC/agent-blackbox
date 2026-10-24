@@ -1,0 +1,64 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22.x', '24.x']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - name: typecheck
+        run: npm run typecheck
+      - name: test
+        run: npm test
+      - name: build
+        run: npm run build
+      - name: contrast audit (WCAG AA, dark + light)
+        run: |
+          node src/cli.ts ui fixtures/mission-demo.ndjson --port 7911 &
+          sleep 2
+          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/?t=22000" --strict
+          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/overview" --page=overview --strict
+          node scripts/audit-contrast.mjs "http://127.0.0.1:7911/compare" --page=compare --strict
+
+      - name: smoke (CLI, local server, static assets)
+        run: |
+          node bin/blackbox.js demo --stats --no-color | grep -E "事件|时长"
+          node bin/blackbox.js demo --once --no-color > /dev/null
+          node bin/blackbox.js adapters --json | grep -q '"dsh"'
+          printf '%s\n' \
+            '{"type":"system","subtype":"init","session_id":"s","model":"m"}' \
+            '{"type":"assistant","message":{"content":[{"type":"text","text":"hi"}]}}' > /tmp/sample.jsonl
+          node bin/blackbox.js ingest /tmp/sample.jsonl --out /tmp/sample.ndjson
+          node bin/blackbox.js stats /tmp/sample.ndjson --json > /dev/null
+
+  package:
+    name: package (install from a clean project)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      # guards against regressions in the published package entry point
+      - name: npm pack → install → run
+        run: bash scripts/verify-pack.sh

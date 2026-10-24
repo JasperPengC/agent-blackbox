@@ -1,0 +1,49 @@
+name: release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - name: quality gate
+        run: |
+          npm run typecheck
+          npm test
+      - name: package smoke test
+        run: bash scripts/verify-pack.sh
+      - name: build tarball
+        run: npm pack --pack-destination dist-pkg 2>/dev/null || npm pack
+      - name: create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            agent-blackbox-*.tgz
+          body: |
+            > Changes in this release: [CHANGELOG.md](CHANGELOG.md).
+
+            Install:
+
+            ```bash
+            npx agent-blackbox demo
+            ```
+      # 需要发布到 npm 时，在仓库 Secrets 里配置 NPM_TOKEN 并取消注释
+      # - name: npm publish
+      #   if: ${{ env.NODE_AUTH_TOKEN != '' }}
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #   run: npm publish --access public
