@@ -37,7 +37,8 @@ if (!CHROME) {
   process.exit(0)
 }
 
-const PORT = Number(process.env['AUDIT_PORT'] ?? 9388)
+// CI 上多个 job 可能并行；用 pid 派生端口避免偶发占用（可用 AUDIT_PORT 覆盖）
+const PORT = Number(process.env['AUDIT_PORT'] ?? 9388 + (process.pid % 500))
 const profile = mkdtempSync(join(tmpdir(), 'bb-audit-'))
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
@@ -96,11 +97,26 @@ const PROBES = {
   ],
 }
 
-const chrome = spawn(
-  CHROME,
-  ['--headless=new', '--disable-gpu', '--hide-scrollbars', `--remote-debugging-port=${PORT}`, '--window-size=1440,900', `--user-data-dir=${profile}`, 'about:blank'],
-  { stdio: 'ignore', detached: true },
-)
+const chromeArgs = [
+  '--headless=new',
+  '--disable-gpu',
+  '--hide-scrollbars',
+  `--remote-debugging-port=${PORT}`,
+  '--window-size=1440,900',
+  `--user-data-dir=${profile}`,
+  // GitHub 的 Linux runner 上 Chrome 需要这两个参数，否则偶发启动失败
+  ...(process.platform === 'linux' ? ['--no-sandbox', '--disable-dev-shm-usage'] : []),
+  'about:blank',
+]
+const chrome = spawn(CHROME, chromeArgs, { stdio: ['ignore', 'ignore', 'pipe'], detached: true })
+let chromeStderr = ''
+let chromeExit = null
+chrome.stderr?.on('data', (chunk) => {
+  chromeStderr = (chromeStderr + String(chunk)).slice(-2000)
+})
+chrome.on('exit', (code) => {
+  chromeExit = code
+})
 const killChrome = () => {
   try {
     process.kill(-chrome.pid, 'SIGKILL')
@@ -117,13 +133,23 @@ process.on('exit', killChrome)
 const sleep2 = sleep
 
 async function main() {
-  for (let i = 0; i < 80; i++) {
+  let ready = false
+  for (let i = 0; i < 150; i++) {
+    if (chromeExit !== null) {
+      throw new Error(`Chrome 启动后立即退出（code=${chromeExit}）：${chromeStderr.trim() || '无 stderr 输出'}`)
+    }
     try {
-      if ((await fetch(`http://127.0.0.1:${PORT}/json/version`)).ok) break
+      if ((await fetch(`http://127.0.0.1:${PORT}/json/version`)).ok) {
+        ready = true
+        break
+      }
     } catch {
       /* retry */
     }
-    await sleep2(150)
+    await sleep2(200)
+  }
+  if (!ready) {
+    throw new Error(`Chrome DevTools 端点 ${PORT} 在 30s 内未就绪：${chromeStderr.trim() || '无 stderr 输出'}`)
   }
   const targets = await (await fetch(`http://127.0.0.1:${PORT}/json/list`)).json()
   const target = targets.find((t) => t.type === 'page')
