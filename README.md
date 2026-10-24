@@ -87,6 +87,8 @@ node src/cli.ts overview        # 终端输出跨会话成本排行（--json 可
 
 ### DSH 插件
 
+[![npm](https://img.shields.io/npm/v/dsh-agent-blackbox?label=npm&color=4f7cff)](https://www.npmjs.com/package/dsh-agent-blackbox)
+
 从 npm 安装（推荐）：
 
 ```bash
