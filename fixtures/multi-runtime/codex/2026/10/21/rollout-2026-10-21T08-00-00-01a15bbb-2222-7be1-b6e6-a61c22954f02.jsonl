@@ -1,0 +1,39 @@
+{"timestamp":"2026-10-21T08:00:00.000Z","ordinal":0,"type":"session_meta","payload":{"session_id":"01a15bbb-2222-7be1-b6e6-a61c22954f02","cwd":"/Users/demo/api","model_provider":"custom","cli_version":"0.163.0"}}
+{"timestamp":"2026-10-21T08:00:00.010Z","ordinal":1,"type":"turn_context","payload":{"model":"gpt-6-sol","cwd":"/Users/demo/api"}}
+{"timestamp":"2026-10-21T08:00:00.910Z","ordinal":2,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 0\"}","call_id":"c-0"}}
+{"timestamp":"2026-10-21T08:00:02.210Z","ordinal":3,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-0","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:02.410Z","ordinal":4,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:02.510Z","ordinal":5,"type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"第 0 组测试跑完了"}]}}
+{"timestamp":"2026-10-21T08:00:03.410Z","ordinal":6,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 1\"}","call_id":"c-1"}}
+{"timestamp":"2026-10-21T08:00:04.710Z","ordinal":7,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-1","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:04.910Z","ordinal":8,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:05.810Z","ordinal":9,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 2\"}","call_id":"c-2"}}
+{"timestamp":"2026-10-21T08:00:07.110Z","ordinal":10,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-2","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:07.310Z","ordinal":11,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:08.210Z","ordinal":12,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 3\"}","call_id":"c-3"}}
+{"timestamp":"2026-10-21T08:00:09.510Z","ordinal":13,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-3","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:09.710Z","ordinal":14,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:10.610Z","ordinal":15,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 4\"}","call_id":"c-4"}}
+{"timestamp":"2026-10-21T08:00:11.910Z","ordinal":16,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-4","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:12.110Z","ordinal":17,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:13.010Z","ordinal":18,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 5\"}","call_id":"c-5"}}
+{"timestamp":"2026-10-21T08:00:14.310Z","ordinal":19,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-5","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:14.510Z","ordinal":20,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:14.610Z","ordinal":21,"type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"第 5 组测试跑完了"}]}}
+{"timestamp":"2026-10-21T08:00:15.510Z","ordinal":22,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 6\"}","call_id":"c-6"}}
+{"timestamp":"2026-10-21T08:00:16.810Z","ordinal":23,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-6","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:17.010Z","ordinal":24,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:17.910Z","ordinal":25,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 7\"}","call_id":"c-7"}}
+{"timestamp":"2026-10-21T08:00:19.210Z","ordinal":26,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-7","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:19.410Z","ordinal":27,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:20.310Z","ordinal":28,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 8\"}","call_id":"c-8"}}
+{"timestamp":"2026-10-21T08:00:21.610Z","ordinal":29,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-8","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:21.810Z","ordinal":30,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:22.710Z","ordinal":31,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 9\"}","call_id":"c-9"}}
+{"timestamp":"2026-10-21T08:00:24.010Z","ordinal":32,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-9","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:24.210Z","ordinal":33,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:25.110Z","ordinal":34,"type":"response_item","payload":{"type":"function_call","name":"shell","arguments":"{\"command\":\"pnpm test 10\"}","call_id":"c-10"}}
+{"timestamp":"2026-10-21T08:00:26.410Z","ordinal":35,"type":"response_item","payload":{"type":"function_call_output","call_id":"c-10","output":[{"type":"input_text","text":"ok"}]}}
+{"timestamp":"2026-10-21T08:00:26.610Z","ordinal":36,"type":"token_usage_record","payload":{"usage":{"input_tokens":113636.36363636363,"cached_input_tokens":89090.90909090909,"output_tokens":8727.272727272728}}}
+{"timestamp":"2026-10-21T08:00:26.710Z","ordinal":37,"type":"response_item","payload":{"type":"message","role":"assistant","content":[{"type":"output_text","text":"第 10 组测试跑完了"}]}}
+{"type": "event_msg", "payload": {"type": "user_message", "message": "排查接口 502 错误"}}
