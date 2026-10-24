@@ -13,3 +13,9 @@ dist/
 
 # local-only working notes, never published
 .internal/
+
+# generated plugin package payload (built by scripts/build-plugin-package.mjs)
+integrations/dsh-plugin/core/
+integrations/dsh-plugin/web/
+integrations/dsh-plugin/fixtures/
+integrations/dsh-plugin/LICENSE

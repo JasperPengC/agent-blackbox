@@ -96,14 +96,23 @@ For npm-style usage, `npm install -g .` installs the `blackbox` binary
 
 ### DSH plugin
 
+Install from npm (recommended):
+
 ```bash
-npm run plugin:install     # idempotent: links the plugin into the DSH profile
-npm run plugin:uninstall
+dsh plugin --profile desktop add dsh-agent-blackbox
 ```
 
 After restarting DSH, the plugin appears as *Blackbox* in the sidebar and as a
 full panel in the main area. It reuses the same HTTP API and renderers as the
-standalone UI.
+standalone UI, and the published package bundles the compiled core, so a separate
+agent-blackbox install is not required.
+
+For development from a checkout:
+
+```bash
+npm run plugin:install     # idempotent: links the plugin into the DSH profile
+npm run plugin:uninstall
+```
 
 ## How it works
 
