@@ -1,5 +1,7 @@
 # dsh-agent-blackbox · DSH 插件
 
+[![npm](https://img.shields.io/npm/v/dsh-agent-blackbox?label=npm&color=4f7cff)](https://www.npmjs.com/package/dsh-agent-blackbox)
+
 把 [agent-blackbox](https://github.com/JasperPengC/agent-blackbox) 的仪表盘装进
 DeepSeek Harness 侧栏：**点一下就在应用内看实时会话 / 回放 / 多会话成本总览，
 不额外起进程、不额外开端口。**

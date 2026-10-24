@@ -1,5 +1,7 @@
 # dsh-agent-blackbox · DSH plugin
 
+[![npm](https://img.shields.io/npm/v/dsh-agent-blackbox?label=npm&color=4f7cff)](https://www.npmjs.com/package/dsh-agent-blackbox)
+
 Puts the [agent-blackbox](https://github.com/JasperPengC/agent-blackbox) dashboard
 inside DeepSeek Harness: a sidebar entry and a full-size panel with live session
 monitoring, replay and a cross-session cost overview. No extra process, no extra

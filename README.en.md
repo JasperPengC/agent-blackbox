@@ -96,6 +96,8 @@ For npm-style usage, `npm install -g .` installs the `blackbox` binary
 
 ### DSH plugin
 
+[![npm](https://img.shields.io/npm/v/dsh-agent-blackbox?label=npm&color=4f7cff)](https://www.npmjs.com/package/dsh-agent-blackbox)
+
 Install from npm (recommended):
 
 ```bash
