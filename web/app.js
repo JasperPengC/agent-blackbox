@@ -1118,10 +1118,14 @@ function loop(now) {
   if (playing && meta) {
     // 焦点跟随：如果接下来一大段没有活动，直接跳到下一个活动点（留 150ms 余量）
     const next = focusMode ? nextActivityAfter(currentT + 1) : null
-    const idleAhead = next === null ? Infinity : next - currentT
-    if (focusMode && idleAhead > 1500) {
+    const hasNext = typeof next === 'number' && Number.isFinite(next)
+    if (focusMode && hasNext && next - currentT > 1500) {
+      const idleAhead = next - currentT
       currentT = Math.min(meta.duration, Math.max(0, next - 150))
       maybeSkipToast(idleAhead)
+    } else if (focusMode && !hasNext && meta.duration - currentT > 1500) {
+      // 后面没有活动了：直接到结尾，不弹「跳过」提示（避免 Infinity:NaN:NaN）
+      currentT = meta.duration
     } else {
       currentT += dt * speed
     }
