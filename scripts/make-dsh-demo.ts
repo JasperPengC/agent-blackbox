@@ -20,7 +20,8 @@ import { fileURLToPath } from 'node:url'
 
 const ROOT_DIR = dirname(dirname(fileURLToPath(import.meta.url)))
 const outIndex = process.argv.indexOf('--out')
-const OUT = resolve(ROOT_DIR, outIndex >= 0 ? process.argv[outIndex + 1] : 'fixtures/dsh-demo')
+const outArg = outIndex >= 0 ? process.argv[outIndex + 1] : undefined
+const OUT = resolve(ROOT_DIR, outArg ?? 'fixtures/dsh-demo')
 
 const PROJECT = '--Users-demo-payments--'
 const PARENT = 'a1b2c3d4-0000-4000-8000-000000000001'

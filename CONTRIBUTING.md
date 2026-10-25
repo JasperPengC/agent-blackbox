@@ -35,7 +35,8 @@ npm run perf -- "http://127.0.0.1:7077/" 1600 1000      # browser performance pr
 npm run audit:contrast -- "http://127.0.0.1:7077/" --strict   # WCAG AA audit
 npm run fixture          # regenerate the bundled fixture
 npm run fixtures:multi   # regenerate multi-runtime demo data
-bash scripts/make-assets.sh   # regenerate README screenshots and GIF
+npm run fixtures:dsh-demo   # regenerate the synthetic DSH session used by the README recordings
+bash scripts/make-assets.sh   # regenerate README screenshots (the playback GIFs are recordings, not generated)
 bash scripts/verify-pack.sh   # package smoke test (install, CLI, server, static assets)
 ```
 

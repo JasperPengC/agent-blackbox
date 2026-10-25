@@ -12,7 +12,7 @@ AI 编程 agent 的飞行记录仪：读取各 runtime 已经写在本地的会�
 
 ![面板回放：时间轴、工具瀑布与事件检查器](docs/playback-dark.gif)
 
-<sub>暗色主题 · 4× 回放 · 合成会话 · [亮色录屏](docs/playback-light.gif) · [亮色截图](docs/light.png)</sub>
+<sub>暗色主题 · 4× 回放 · 合成会话 · [亮色录屏](docs/playback-light.gif) · 网速慢可以看[静态截图](docs/light.png)</sub>
 
 ## 功能
 

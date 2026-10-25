@@ -13,7 +13,7 @@ timeline. Everything runs on your machine — no network requests, no telemetry.
 
 ![Panel replay: timeline, tool waterfall and event inspector](docs/playback-dark.gif)
 
-<sub>Dark theme · 4× playback · synthetic session · [light recording](docs/playback-light.gif) · [light screenshot](docs/light.png)</sub>
+<sub>Dark theme · 4× playback · synthetic session · [light recording](docs/playback-light.gif) · slow connection? [open the static screenshot](docs/light.png)</sub>
 
 ## Features
 
