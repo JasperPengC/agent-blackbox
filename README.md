@@ -100,6 +100,9 @@ dsh plugin --profile desktop add dsh-agent-blackbox
 不需要另外安装 agent-blackbox。插件源码与发版在独立仓库
 [dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox)。
 
+也可以在 DSH 的「设置 → 插件市场」里搜索 `agent-blackbox` 一键安装
+（已收录：[dsh-plugin.org](https://dsh-plugin.org/zh/plugins/jasperpengc/dsh-agent-blackbox)）。
+
 仓库内开发时用 link 安装：
 
 ```bash

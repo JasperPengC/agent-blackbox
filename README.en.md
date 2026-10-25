@@ -110,6 +110,10 @@ standalone UI, and the published package bundles the compiled core, so a separat
 agent-blackbox install is not required. The plugin is developed and released from
 [dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox).
 
+It is also listed in the DSH plugin market (*Settings → Plugin market*); search for
+`agent-blackbox` and install it in one click
+([listing](https://dsh-plugin.org/plugins/jasperpengc/dsh-agent-blackbox)).
+
 For development from a checkout:
 
 ```bash
