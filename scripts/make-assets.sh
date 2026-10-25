@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-# Generate README screenshots and the demo GIF from synthetic fixtures only.
+# Generate the README screenshots from synthetic fixtures only.
+# The playback GIFs in docs/ are screen recordings, not generated here.
 # Usage: bash scripts/make-assets.sh
-# Requires: Chrome (screenshots), Python 3 + Pillow (GIF).
+# Requires: Chrome (screenshots).
 set -euo pipefail
 
 PORT=7900
@@ -62,25 +63,4 @@ show "/?t=22000&onboard=off&embed=1&theme=light" narrow.png 420 700
 echo "▸ embedded / panel size"
 show "/?t=22000&embed=1" responsive.png 900 720
 
-echo "▸ GIF frames"
-FRAMES=/tmp/bb-frames
-rm -rf "$FRAMES" && mkdir -p "$FRAMES"
-i=0
-for t in 0 2000 4000 6000 8000 10000 12000 14000 16000 18000 20000 22000 24000 26000 28000 30000 32000 34000 36000 38000; do
-  node scripts/shot.mjs "http://127.0.0.1:$PORT/?t=$t&onboard=off" "$FRAMES/f$(printf '%03d' $i).png" 1200 760 >/dev/null
-  i=$((i + 1))
-done
-
-echo "▸ composing GIF"
-"$PY" - <<'PY'
-from PIL import Image
-import glob
-
-files = sorted(glob.glob('/tmp/bb-frames/f*.png'))
-frames = [Image.open(f).convert('P', palette=Image.ADAPTIVE, colors=160) for f in files]
-if frames:
-    frames[0].save('docs/demo.gif', save_all=True, append_images=frames[1:], duration=140, loop=0, optimize=True)
-    print(f'  docs/demo.gif  {len(frames)} frames')
-PY
-
-ls -la docs/*.png docs/demo.gif | awk '{print "  ", $5, $9}'
+ls -la docs/*.png | awk '{print "  ", $5, $9}'
