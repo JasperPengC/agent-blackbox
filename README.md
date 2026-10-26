@@ -9,6 +9,7 @@ AI 编程 agent 的飞行记录仪：读取各 runtime 已经写在本地的会�
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![node](https://img.shields.io/badge/node-%E2%89%A522.19-339933)
 ![runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-blue)
+[![LINUX.DO](https://img.shields.io/badge/LINUX.DO-%E7%A4%BE%E5%8C%BA-1f7aec?style=flat-square)](https://linux.do)
 
 ![面板回放：时间轴、工具瀑布与事件检查器](docs/playback-dark.gif)
 
@@ -117,6 +118,8 @@ Intel Mac（Core i7-10700 @ 2.90 GHz，macOS 14.8.9）、Node 24.18、Chrome 155
 ## 参与贡献
 
 欢迎 issue 和 PR，见 [CONTRIBUTING.md](CONTRIBUTING.md)；安全问题见 [SECURITY.md](SECURITY.md)。
+
+社区交流：[LINUX.DO](https://linux.do)。
 
 ## 许可证
 
