@@ -7,6 +7,17 @@
 
 [English](CHANGELOG.en.md) · 中文
 
+## [Unreleased]
+
+### Fixed
+
+- Event list stayed empty after opening or switching a session until a tab was
+  clicked: the virtual list kept a stale `data-total` from the previous session
+  while the empty state had replaced its inner container.
+- Switching sessions reset "follow latest" to off; it now follows the newest
+  position again by default.
+- Focus-mode playback near the end of a session showed `跳过 Infinity:NaN:NaN`.
+
 ## [0.1.0] - 2026-10-25
 
 首个公开版本。
