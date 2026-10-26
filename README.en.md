@@ -10,7 +10,6 @@ timeline. Everything runs on your machine — no network requests, no telemetry.
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![node](https://img.shields.io/badge/node-%E2%89%A522.19-339933)
 ![runtime deps](https://img.shields.io/badge/runtime%20dependencies-0-blue)
-[![LINUX.DO](https://img.shields.io/badge/LINUX.DO-%E7%A4%BE%E5%8C%BA-1f7aec?style=flat-square)](https://linux.do)
 
 ![Panel replay: timeline, tool waterfall and event inspector](docs/playback-dark.gif)
 
@@ -131,7 +130,9 @@ against synthetic fixtures and a 47 MB session. Expect faster numbers on Apple s
 Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 Security reports: [SECURITY.md](SECURITY.md).
 
-Community: [LINUX.DO](https://linux.do).
+## Community
+
+Promoted in the [LINUX DO](https://linux.do) community.
 
 ## License
 
