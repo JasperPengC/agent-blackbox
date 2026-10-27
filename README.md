@@ -71,6 +71,8 @@ dsh plugin --profile desktop add dsh-agent-blackbox
 重启 DSH 后侧栏出现 *Blackbox*，主区可打开整屏面板；也可以在 DSH 的
 「设置 → 插件市场」里搜索 `agent-blackbox` 安装（已收录：
 [dsh-plugin.org](https://dsh-plugin.org/zh/plugins/jasperpengc/dsh-agent-blackbox)）。
+dshmarket 目录同样有收录：
+[awesome-dsh-plugin.com](https://awesome-dsh-plugin.com/p/JasperPengC/dsh-agent-blackbox/)。
 插件源码与发版在 [dsh-agent-blackbox](https://github.com/JasperPengC/dsh-agent-blackbox)。
 
 ## 实现
